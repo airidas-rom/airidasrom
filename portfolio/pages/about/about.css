@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color: #0b6772;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+
+.white {
+    color: white;
+}
+
+.personal {
+    color: rgb(101, 182, 185);
+    font-size: 20px;
+}
+
+.main-body {
+    border: 2px solid white;
+    padding: 20px;
+    border-radius: 25px;
+    max-width: 1000px;
+    gap: 20px; /* Adjust the gap between items */
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center;     /* Vertically center */
+    height: 100vh;           /* Full viewport height */
+}
+
+.description {
+    color: rgb(101, 182, 185);
+    font-size: 22px;
+    margin-top: 30px;
+}
+
+.header-title {
+    margin-bottom: 20px;
+}
+
+#linktoworkplaces {
+    text-decoration: none;
+    border: none;
+    color: rgb(85,26,139);
+}
+
+#linktoworkplaces:hover {
+    border-radius: 10px;
+    border: 2px solid blue;
+    background-color: rgba(0, 0, 255, 0.1);
+}
+
+#school {
+    border: none;
+    text-decoration: none;
+    color: rgb(85,26,139);
+}
+
+#school:hover {
+    border-radius: 10px;
+    border: 2px solid blue;
+    background-color: rgba(0, 0, 255, 0.1);
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="skills.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("../../assets/header.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("header").innerHTML = data;
+          })
+          .catch((error) => console.error("Error loading header:", error));
+      });
+    </script>
+  </head>
+  <body>
+    <header id="header"></header>
+    <div class="main-body">
+      <div class="skills-container">
+        <div class="header-title">
+          <h2>Skills</h2>
+        </div>
+        <div class="skills-list">
+          <h2 id="skill">• Teamwork</h2>
+        </div>
+      </div>
+    </div>
+    <script src="skills.js"></script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="about.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("../../assets/header.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("header").innerHTML = data;
+          })
+          .catch((error) => console.error("Error loading header:", error));
+      });
+    </script>
+  </head>
+  <header id="header"></header>
+  <body>
+    <div class="container">
+      <div class="main-body">
+        <div class="info-box">
+          <div class="header-title"><h1>About me</h1></div>
+          <div class="personal">
+            <h1><span class="white">Full name:</span> Airidas Romanovas</h1>
+            <h1><span class="white">Age:</span> 18</h1>
+            <h1><span class="white">Birthday:</span> 2006-05-10</h1>
+          </div>
+          <div class="description">
+            <h2>
+              Hello, my name is Airidas I'm a student at Lithuania's
+              <a id="school" target="_blank" href="https://vsrc.lt/en/"
+                >VSRC University</a
+              >
+              learning CAD. <br /><br />Aside that it's my profession i prefer
+              coding and so this is my first portfolio that i've created on my
+              own and i feel great about it. While writing this i can say that i
+              like to work. I've worked only once, but i liked it very much even
+              though it was hard, because it was physical work.
+            </h2>
+            <br />
+            <h2>Here's few positives about me:</h2>
+            <h2>• Hard working</h2>
+            <h2>• Friendly</h2>
+            <h2>• Co-Operative</h2>
+            <br />
+            <h2>
+              For my workplaces you can see it
+              <a id="linktoworkplaces" href="/pages/workplaces/workplaces.html"
+                >here.</a
+              >
+            </h2>
+          </div>
+        </div>
+        <!-- <div class="photo-box"><img src="" /></div> -->
+      </div>
+    </div>
+  </body>
+</html>
