@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Museum of Failures — Airidas</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream:  #F4EDE0;
+  --panel:  #EAE0CE;
+  --panel2: #E0D4BF;
+  --panel3: #D6C9B2;
+  --border: #D4C5AE;
+  --muted:  #A08C72;
+  --sub:    #7A6A52;
+  --text:   #4A3C28;
+  --dark:   #2C2018;
+  --card:   #CCBFA8;
+  --accent: #B8A48A;
+  --warm:   #C4956A;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--cream); font-family: 'DM Sans', sans-serif; color: var(--dark); min-height: 100vh; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--panel); }
+::-webkit-scrollbar-thumb { background: var(--card); border-radius: 3px; }
+
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--panel); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 36px; height: 56px;
+}
+.nav-logo { font-family: 'Lora', serif; font-size: 19px; color: var(--dark); letter-spacing: -0.01em; text-decoration: none; font-weight: 500;}
+.nav-back { font-size: 13px; color: var(--sub); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; display: flex; align-items: center; gap: 6px; }
+.nav-back:hover { color: var(--dark); }
+
+.page { max-width: 780px; margin: 0 auto; padding: 60px 36px 100px; }
+
+.page-eyebrow { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+.page-title { font-family: 'Lora', serif; font-size: 38px; font-weight: 500; color: var(--dark); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+.page-intro { font-family: 'Lora', serif; font-style: italic; font-size: 15px; color: var(--sub); line-height: 1.8; max-width: 580px; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+
+.category-label {
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 16px; margin-top: 48px;
+  display: flex; align-items: center; gap: 10px;
+}
+.category-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.category-label:first-of-type { margin-top: 0; }
+
+.fail-card {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 16px; padding: 24px 26px; margin-bottom: 14px;
+}
+.fail-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.fail-title-wrap {}
+.fail-title { font-size: 16px; font-weight: 500; color: var(--dark); margin-bottom: 4px; }
+.fail-subtitle { font-size: 13px; color: var(--muted); }
+.fail-badge {
+  font-size: 10px; background: var(--cream); color: var(--muted);
+  border-radius: 20px; padding: 4px 11px; border: 1px solid var(--border);
+  letter-spacing: 0.04em; flex-shrink: 0; white-space: nowrap;
+}
+.fail-rows { display: flex; flex-direction: column; gap: 8px; }
+.fail-row { display: flex; gap: 14px; align-items: baseline; }
+.fail-row-label {
+  font-size: 10px; color: var(--muted); letter-spacing: 0.07em;
+  text-transform: uppercase; min-width: 80px; flex-shrink: 0; padding-top: 2px;
+}
+.fail-row-val { font-size: 13.5px; color: var(--sub); line-height: 1.6; }
+.fail-lesson-val {
+  font-size: 13.5px; color: var(--text); line-height: 1.6;
+  font-style: italic; font-family: 'Lora', serif;
+}
+
+.closing {
+  margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--border);
+  font-family: 'Lora', serif; font-style: italic;
+  font-size: 15px; color: var(--sub); line-height: 1.8;
+}
+.back-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 28px; font-size: 13px; color: var(--dark);
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 20px; text-decoration: none;
+  transition: background 0.15s;
+}
+.back-btn:hover { background: var(--panel2); }
+
+footer {
+  border-top: 1px solid var(--border); padding: 20px 36px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: var(--muted); background: var(--panel);
+}
+
+@media (max-width: 600px) {
+  nav { padding: 0 18px; }
+  .page { padding: 36px 20px 80px; }
+  .page-title { font-size: 28px; }
+  .fail-header { flex-direction: column; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="airidas-portfolio-final.html">Airidas.</a>
+  <a class="nav-back" href="airidas-portfolio-final.html">← back to portfolio</a>
+</nav>
+
+<div class="page">
+
+  <div class="page-eyebrow">Museum of failures</div>
+  <div class="page-title">What didn't work,<br>and what I learned.</div>
+  <div class="page-intro">
+    Most engineering portfolios exclusively demonstrate wins. This page serves as a transparent look at everything else—communities that collapsed, projects that stalled, and systems that were architecturally correct but failed conceptually. In software development, failures teach you mechanics.
+  </div>
+
+  <div class="category-label">Discord Communities & Hubs</div>
+
+  <div class="fail-card">
+    <div class="fail-header">
+      <div class="fail-title-wrap">
+        <div class="fail-title">G:ZKDU — Global:Zonal Community Development</div>
+        <div class="fail-subtitle">A conceptual macro-hub for self-development and networking</div>
+      </div>
+      <span class="fail-badge">community</span>
+    </div>
+    <div class="fail-rows">
+      <div class="fail-row"><span class="fail-row-label">Tried</span><span class="fail-row-val">Build a vibrant hub where people could collaborate exclusively on innovative side-projects while hosting a casual fun-zone interface.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Why it failed</span><span class="fail-row-val">Development paralysis. I attempted to curate the absolute perfect product structure internally before deploying it externally. I built the structure, but never shipped it.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Learned</span><span class="fail-lesson-val">Seeking a perfect launch permanently prevents a real one. Minimum viable product first, refine later.</span></div>
+    </div>
+  </div>
+
+  <div class="fail-card">
+    <div class="fail-header">
+      <div class="fail-title-wrap">
+        <div class="fail-title">Beehoove</div>
+        <div class="fail-subtitle">A complex gamified 'Learn-to-Earn' social experiment</div>
+      </div>
+      <span class="fail-badge">community</span>
+    </div>
+    <div class="fail-rows">
+      <div class="fail-row"><span class="fail-row-label">Tried</span><span class="fail-row-val">Programmed a massive multi-category network spanning fitness to software engineering. Users engaged and learned to generate digital points, which mapped directly to real PayPal bounties.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Why it failed</span><span class="fail-row-val">Information overload. The volume of categories was paralyzing, and it proved impossible to establish an initial critical mass of people.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Learned</span><span class="fail-lesson-val">Complexity kills initial network adoption. You must establish a rigid core loop before scaling out supplementary features.</span></div>
+    </div>
+  </div>
+
+  <div class="fail-card">
+    <div class="fail-header">
+      <div class="fail-title-wrap">
+        <div class="fail-title">Hangoutspot</div>
+        <div class="fail-subtitle">A completely generalized social relaxation server</div>
+      </div>
+      <span class="fail-badge">community</span>
+    </div>
+    <div class="fail-rows">
+      <div class="fail-row"><span class="fail-row-label">Tried</span><span class="fail-row-val">Curated a simple, low-pressure application space purely for individuals to network and communicate with zero underlying agenda.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Why it failed</span><span class="fail-row-val">An absolute lack of defined mechanical purpose. "A place to relax" is simply not a strong enough utility vector to drive acquisition.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Learned</span><span class="fail-lesson-val">Vibes do not drive platforms. People adopt software because it solves a problem; they only stay for the feeling.</span></div>
+    </div>
+  </div>
+
+  <div class="category-label">E-Commerce & Digital Markets</div>
+
+  <div class="fail-card">
+    <div class="fail-header">
+      <div class="fail-title-wrap">
+        <div class="fail-title">WMShop</div>
+        <div class="fail-subtitle">A Discord storefront explicitly backed by GPU-mining yields</div>
+      </div>
+      <span class="fail-badge">e-commerce</span>
+    </div>
+    <div class="fail-rows">
+      <div class="fail-row"><span class="fail-row-label">Tried</span><span class="fail-row-val">Leveraged GPU cryptocurrency mining logic ("Salad") to organically fund the purchase of Steam Keys. Integrated PayPal APIs and created a physical Discord storefront.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Why it failed</span><span class="fail-row-val">The backend financial loop and application pipeline worked flawlessly. It failed strictly due to an inability to market an unverified Discord storefront to internet traffic.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Learned</span><span class="fail-lesson-val">A perfect backend with zero distribution is a dead asset. Engineers often fail to recognize that building the code is the easiest phase.</span></div>
+    </div>
+  </div>
+
+  <div class="fail-card">
+    <div class="fail-header">
+      <div class="fail-title-wrap">
+        <div class="fail-title">PlayPortal</div>
+        <div class="fail-subtitle">The secondary structural evolution of WMShop</div>
+      </div>
+      <span class="fail-badge">e-commerce</span>
+    </div>
+    <div class="fail-rows">
+      <div class="fail-row"><span class="fail-row-label">Tried</span><span class="fail-row-val">Completely rebuilt the game shop pipeline, abandoning the Discord text-storefront for a dedicated sellpass.io backend to force legitimate checkout flows.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Why it failed</span><span class="fail-row-val">Hit the exact same wall as WMShop. An incredibly clean product, but zero ability to reach an audience. Solved the wrong problem a second time.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Learned</span><span class="fail-lesson-val">Rebuilding an infrastructure does not fix a marketing bottleneck. Engineering comfort cannot fix sales gaps.</span></div>
+    </div>
+  </div>
+
+  <div class="fail-card">
+    <div class="fail-header">
+      <div class="fail-title-wrap">
+        <div class="fail-title">Statboost Gaming Services</div>
+        <div class="fail-subtitle">Grey-market arbitrage and manual grinding firm</div>
+      </div>
+      <span class="fail-badge">e-commerce</span>
+    </div>
+    <div class="fail-rows">
+      <div class="fail-row"><span class="fail-row-label">Tried</span><span class="fail-row-val">Located obscure, cheap keys and resold them below active market value while simultaneously attempting to provide manual resource grinding protocols in Rust and Sea of Thieves.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Why it failed</span><span class="fail-row-val">Failure to gain traction. Attempted to compete in an incredibly crowded space with absolutely zero differentiation logic or network backing.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Learned</span><span class="fail-lesson-val">"Being cheaper" is an unsustainable business model if the market doesn't know your business exists to begin with.</span></div>
+    </div>
+  </div>
+
+  <div class="category-label">Full-Stack Frameworks</div>
+
+  <div class="fail-card">
+    <div class="fail-header">
+      <div class="fail-title-wrap">
+        <div class="fail-title">Roswaldi Web Agency</div>
+        <div class="fail-subtitle">High-performance React corporate frontends</div>
+      </div>
+      <span class="fail-badge">development</span>
+    </div>
+    <div class="fail-rows">
+      <div class="fail-row"><span class="fail-row-label">Tried</span><span class="fail-row-val">Engineered a multi-tier web agency leveraging React to target established businesses. Successfully built and deployed premium portfolio demonstration logic under the Roswaldi namespace.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Why it failed</span><span class="fail-row-val">The underlying product aesthetic and framework was elite. The project was simply killed by circumstance, as the co-founders schedules permanently detached.</span></div>
+      <div class="fail-row"><span class="fail-row-label">Learned</span><span class="fail-lesson-val">A scalable deployment stack means absolutely nothing without explicit time commitment. Co-founder alignment is a structural necessity.</span></div>
+    </div>
+  </div>
+
+  <div class="closing">
+    There is no prestige in hiding massive architectural or business failures. The projects in this list actively shaped how I structure my code configurations today.<br><br>
+    If any of this resonates, or if you've got your own graveyard of failed systems — <a href="airidas-portfolio-final.html#contact" style="color: var(--warm); text-decoration: none;">let's talk</a>.
+  </div>
+
+  <a class="back-btn" href="airidas-portfolio-final.html">← back to portfolio</a>
+
+</div>
+
+<footer>
+  <span>Airidas · Lithuania</span>
+  <span>built simply · 2026</span>
+</footer>
+
+</body>
+</html>

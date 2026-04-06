@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Airidas — Software Engineer & Automation</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream:  #F4EDE0;
+  --panel:  #EAE0CE;
+  --panel2: #E0D4BF;
+  --panel3: #D6C9B2;
+  --border: #D4C5AE;
+  --muted:  #A08C72;
+  --sub:    #7A6A52;
+  --text:   #4A3C28;
+  --dark:   #2C2018;
+  --card:   #CCBFA8;
+  --accent: #B8A48A;
+  --green:  #7A9E6E;
+  --warm:   #C4956A;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--cream); font-family: 'DM Sans', sans-serif; color: var(--dark); min-height: 100vh; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--panel); }
+::-webkit-scrollbar-thumb { background: var(--card); border-radius: 3px; }
+
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--panel); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 36px; height: 56px;
+}
+.nav-logo { font-family: 'Lora', serif; font-size: 19px; color: var(--dark); letter-spacing: -0.01em; font-weight: 500;}
+.nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.nav-links a { font-size: 13px; color: var(--sub); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+.nav-links a:hover { color: var(--dark); }
+
+.split { display: flex; align-items: flex-start; }
+
+.left {
+  width: 300px; flex-shrink: 0;
+  background: var(--panel); border-right: 1px solid var(--border);
+  padding: 44px 30px 40px;
+  position: sticky; top: 56px; height: calc(100vh - 56px);
+  display: flex; flex-direction: column; gap: 26px;
+  overflow-y: auto;
+}
+.status { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; color: var(--sub); letter-spacing: 0.06em; text-transform: uppercase; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+.big-name { font-family: 'Lora', serif; font-size: 46px; font-weight: 500; color: var(--dark); line-height: 1.05; letter-spacing: -0.025em; }
+.handle { font-size: 13px; color: var(--muted); margin-top: 5px; }
+.tagline { font-size: 13.5px; color: var(--text); line-height: 1.8; border-left: 2px solid var(--warm); padding-left: 13px; }
+.social-stack { display: flex; flex-direction: column; gap: 3px; }
+.social-item { display: flex; align-items: center; gap: 11px; font-size: 13px; color: var(--sub); padding: 6px 0; text-decoration: none; transition: color 0.15s; }
+.social-item:hover { color: var(--dark); }
+.s-icon { width: 24px; height: 24px; border-radius: 6px; background: var(--card); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; color: var(--text); flex-shrink: 0; }
+.into-block { background: var(--cream); border: 1px solid var(--border); border-radius: 14px; padding: 16px 16px 14px; }
+.into-heading { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.into-row { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 11px; }
+.into-row:last-child { margin-bottom: 0; }
+.into-icon { width: 30px; height: 30px; border-radius: 8px; background: var(--card); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 13px; color: var(--text); }
+.into-cat { font-size: 10px; color: var(--muted); letter-spacing: 0.03em; }
+.into-val { font-size: 13px; color: var(--dark); font-weight: 500; line-height: 1.4; }
+.left-foot { font-size: 11px; color: var(--muted); letter-spacing: 0.04em; margin-top: auto; }
+
+.right { flex: 1; min-width: 0; padding: 52px 52px 100px; }
+.section-block { margin-bottom: 64px; }
+.sec-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+.sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 100px; }
+
+.hero-line { font-family: 'Lora', serif; font-size: 17px; color: var(--dark); line-height: 1.65; max-width: 520px; margin-bottom: 20px; font-style: italic; border-left: 2px solid var(--warm); padding-left: 16px; }
+.about-body { font-size: 15px; color: var(--text); line-height: 1.9; max-width: 560px; }
+.about-body strong { color: var(--dark); font-weight: 500; }
+
+.proj-list { display: flex; flex-direction: column; gap: 14px; }
+.proj-card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; cursor: pointer; transition: background 0.15s, transform 0.15s; text-decoration: none; display: block; }
+.proj-card:hover { background: var(--panel2); transform: translateX(4px); }
+.proj-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+.proj-title { font-size: 14px; font-weight: 500; color: var(--dark); }
+.proj-tag { font-size: 11px; background: var(--card); color: var(--text); border-radius: 20px; padding: 3px 11px; white-space: nowrap; flex-shrink: 0; font-weight: 500; }
+.proj-rows { display: flex; flex-direction: column; gap: 6px; }
+.proj-row { display: flex; gap: 10px; align-items: baseline; }
+.proj-row-label { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; min-width: 54px; flex-shrink: 0; padding-top: 1px; }
+.proj-row-val { font-size: 13px; color: var(--sub); line-height: 1.55; }
+.proj-impact { color: var(--warm); font-weight: 500; }
+
+.skills-groups { display: flex; flex-direction: column; gap: 18px; }
+.skill-group-label { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 9px; }
+.skills-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
+.sk { font-size: 13px; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); color: var(--text); background: var(--cream); transition: background 0.12s; }
+.sk:hover { background: var(--panel); }
+.sk.core { background: var(--panel3); border-color: var(--accent); color: var(--dark); font-weight: 500; }
+.sk.working { background: var(--panel); border-color: var(--border); color: var(--text); }
+
+.services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); gap: 12px; }
+.svc-card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 20px 18px; transition: background 0.15s; }
+.svc-card:hover { background: var(--panel2); }
+.svc-icon { font-size: 20px; margin-bottom: 10px; }
+.svc-title { font-size: 14px; font-weight: 500; color: var(--dark); margin-bottom: 5px; }
+.svc-desc { font-size: 13px; color: var(--sub); line-height: 1.65; }
+
+.museum-intro { font-family: 'Lora', serif; font-style: italic; font-size: 14px; color: var(--sub); line-height: 1.8; max-width: 520px; margin-bottom: 22px; padding: 14px 18px; background: var(--panel); border-radius: 12px; border-left: 3px solid var(--warm); }
+.fail-list { display: flex; flex-direction: column; gap: 12px; }
+.fail-card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+.fail-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.fail-badge { font-size: 10px; background: var(--cream); color: var(--muted); border-radius: 20px; padding: 3px 10px; border: 1px solid var(--border); letter-spacing: 0.04em; flex-shrink: 0; }
+.fail-title { font-size: 14px; font-weight: 500; color: var(--dark); }
+.fail-rows { display: flex; flex-direction: column; gap: 6px; }
+.fail-row { display: flex; gap: 10px; align-items: baseline; }
+.fail-row-label { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; min-width: 72px; flex-shrink: 0; padding-top: 1px; }
+.fail-row-val { font-size: 13px; color: var(--sub); line-height: 1.55; }
+.fail-lesson-val { font-size: 13px; color: var(--text); line-height: 1.55; font-style: italic; font-family: 'Lora', serif; }
+
+.groups-wrap { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.group-card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; cursor: pointer; transition: background 0.15s; text-decoration: none; display: block; }
+.group-card:hover { background: var(--panel2); }
+.group-name { font-size: 14px; font-weight: 500; color: var(--dark); margin-bottom: 4px; }
+.group-meta { font-size: 12px; color: var(--muted); }
+.group-card.dashed { border-style: dashed; background: transparent; }
+
+.contact-intro { font-size: 14px; color: var(--sub); line-height: 1.7; max-width: 460px; margin-bottom: 20px; }
+.contact-wrap { display: flex; flex-direction: column; gap: 11px; max-width: 460px; }
+.ci { background: var(--panel); border: 1px solid var(--card); border-radius: 10px; padding: 11px 15px; font-size: 14px; color: var(--dark); font-family: 'DM Sans', sans-serif; width: 100%; outline: none; transition: border-color 0.15s; }
+.ci:focus { border-color: var(--warm); }
+.ci::placeholder { color: var(--muted); }
+textarea.ci { min-height: 96px; resize: vertical; }
+.cta { background: var(--dark); color: var(--cream); border: none; border-radius: 10px; padding: 12px 26px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; letter-spacing: 0.03em; width: fit-content; transition: opacity 0.15s; }
+.cta:hover { opacity: 0.82; }
+
+footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); background: var(--panel); }
+
+@media (max-width: 720px) {
+  nav { padding: 0 18px; }
+  .nav-links { gap: 12px; }
+  .nav-links a { font-size: 12px; }
+  .split { flex-direction: column; }
+  .left { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); padding: 28px 20px 24px; gap: 18px; overflow: visible; }
+  .big-name { font-size: 36px; }
+  .social-stack { flex-direction: row; flex-wrap: wrap; gap: 4px 14px; }
+  .left-foot { display: none; }
+  .right { padding: 28px 20px 60px; }
+}
+@media (min-width: 721px) and (max-width: 1050px) {
+  .left { width: 255px; padding: 36px 22px; }
+  .big-name { font-size: 36px; }
+  .right { padding: 40px 32px 80px; }
+  nav { padding: 0 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Airidas.</span>
+  <div class="nav-links">
+    <a href="#about">about</a>
+    <a href="#projects">projects</a>
+    <a href="#skills">skills</a>
+    <a href="#services">services</a>
+    <a href="#failures">failures</a>
+    <a href="#groups">reach me</a>
+    <a href="#contact">contact</a>
+  </div>
+</nav>
+
+<div class="split">
+
+  <div class="left">
+    <div class="status"><span class="dot"></span> Lithuania</div>
+    <div>
+      <div class="big-name">Airidas.</div>
+      <div class="handle">@airidas-rom</div>
+    </div>
+    <div class="tagline">I turn repetitive processes into systems. Code, CAD, real estate — whatever needs moving.</div>
+    <div class="social-stack">
+      <a class="social-item" href="https://github.com/airidas-rom" target="_blank"><span class="s-icon">Gh</span> GitHub</a>
+      <a class="social-item" href="https://discord.gg/AqtnshTQhd" target="_blank"><span class="s-icon">Dc</span> Discord</a>
+      <a class="social-item" href="#"><span class="s-icon">Wa</span> WhatsApp</a>
+      <a class="social-item" href="#contact"><span class="s-icon">@</span> Email</a>
+    </div>
+    <div class="into-block">
+      <div class="into-heading">Currently</div>
+      <div class="into-row">
+        <div class="into-icon">◈</div>
+        <div>
+          <div class="into-cat">building</div>
+          <div class="into-val">AI voice journal — talk, it listens, tracks your progress</div>
+        </div>
+      </div>
+      <div class="into-row">
+        <div class="into-icon">◎</div>
+        <div>
+          <div class="into-cat">exploring</div>
+          <div class="into-val">Real estate, new paths, people worth knowing</div>
+        </div>
+      </div>
+    </div>
+    <div class="left-foot">Airidas · Lithuania · 2026</div>
+  </div>
+
+  <div class="right">
+
+    <div class="section-block" id="about">
+      <div class="sec-label">About</div>
+      <div class="hero-line">I automate workflows and turn repetitive work into systems that save time.</div>
+      <div class="about-body">
+        Hey, I'm Airidas. I write <strong>Python</strong> and <strong>JavaScript</strong>, design in <strong>AutoCAD</strong>, run servers and databases, and spend a lot of time thinking about how to make things move faster and smarter.<br><br>
+        Right now I'm figuring out the next chapter — exploring real estate, meeting people worth knowing, and building things on the side. I like it when processes move, connections form, and ideas turn into something real.
+      </div>
+    </div>
+
+    <!-- ELITE TOP 3 PROJECTS -->
+    <div class="section-block" id="projects">
+      <div class="sec-label">Projects</div>
+      <div class="proj-list">
+        
+        <a class="proj-card" href="https://github.com/airidas-rom/horizon_bot" target="_blank">
+          <div class="proj-header">
+            <div class="proj-title">Horizon Bot</div>
+            <span class="proj-tag">Python · discord.py · SQLite</span>
+          </div>
+          <div class="proj-rows">
+            <div class="proj-row"><span class="proj-row-label">Problem</span><span class="proj-row-val">Discord communities need moderation, economy, and engagement — most bots do one of those things poorly</span></div>
+            <div class="proj-row"><span class="proj-row-label">Built</span><span class="proj-row-val">44-Cog modular engine with RPG levelling, a virtual economy, Vegas-styled gambling UI, and isolated security functions — all in one bot</span></div>
+            <div class="proj-row"><span class="proj-row-label">Impact</span><span class="proj-row-val proj-impact">Full community OS — moderation, engagement, and economy running off a single codebase</span></div>
+          </div>
+        </a>
+
+        <a class="proj-card" href="https://github.com/airidas-rom/roswaldi-official" target="_blank">
+          <div class="proj-header">
+            <div class="proj-title">Roswaldi — React web agency</div>
+            <span class="proj-tag">React · TypeScript · Tailwind</span>
+          </div>
+          <div class="proj-rows">
+            <div class="proj-row"><span class="proj-row-label">Problem</span><span class="proj-row-val">Local businesses need high-quality web presences but the market is full of templated, generic agency work</span></div>
+            <div class="proj-row"><span class="proj-row-label">Built</span><span class="proj-row-val">Full agency framework with multilingual support via React context, Framer Motion routing, and premium client demo sites under the Roswaldi brand</span></div>
+            <div class="proj-row"><span class="proj-row-label">Impact</span><span class="proj-row-val proj-impact">Production-ready product — killed by scheduling, not by quality</span></div>
+          </div>
+        </a>
+
+        <a class="proj-card" href="https://github.com/airidas-rom/stock-sorting" target="_blank">
+          <div class="proj-header">
+            <div class="proj-title">Stock sorting & scraper pipeline</div>
+            <span class="proj-tag">Python · Selenium · BeautifulSoup · SQLite</span>
+          </div>
+          <div class="proj-rows">
+            <div class="proj-row"><span class="proj-row-label">Problem</span><span class="proj-row-val">Scraped e-commerce data arrives as messy, malformed JSON with thousands of duplicates that break databases</span></div>
+            <div class="proj-row"><span class="proj-row-label">Built</span><span class="proj-row-val">Zero-dependency Python parser that ingests raw scraped arrays, sanitises them, and inserts into SQLite using composite keys to block duplicates at the query level</span></div>
+            <div class="proj-row"><span class="proj-row-label">Impact</span><span class="proj-row-val proj-impact">Clean, deduplicated data pipeline — no external libraries, no duplicate rows</span></div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="section-block" id="skills">
+      <div class="sec-label">Skills & tools</div>
+      <div class="skills-groups">
+        <div>
+          <div class="skill-group-label">Core</div>
+          <div class="skills-wrap">
+            <span class="sk core">Python</span>
+            <span class="sk core">AutoCAD</span>
+            <span class="sk core">Automation</span>
+            <span class="sk core">Web scraping</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-label">Working with</div>
+          <div class="skills-wrap">
+            <span class="sk working">JavaScript</span>
+            <span class="sk working">Node.js</span>
+            <span class="sk working">React</span>
+            <span class="sk working">TypeScript</span>
+            <span class="sk working">SQLite</span>
+            <span class="sk working">Servers & databases</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-label">Exploring</div>
+          <div class="skills-wrap">
+            <span class="sk">Real estate systems</span>
+            <span class="sk">CAD workflows</span>
+            <span class="sk">Vibe coding</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block" id="services">
+      <div class="sec-label">What I offer</div>
+      <div class="services-grid">
+        <div class="svc-card">
+          <div class="svc-icon">⌨</div>
+          <div class="svc-title">Workflow automation</div>
+          <div class="svc-desc">If you do it manually more than twice, it can probably be automated. Python, JS, Node.</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">◫</div>
+          <div class="svc-title">CAD process optimisation</div>
+          <div class="svc-desc">AutoCAD tutoring or workflow cleanup. I know it fully — 1-on-1 or structured courses.</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">⇄</div>
+          <div class="svc-title">Small tools for teams</div>
+          <div class="svc-desc">Internal scripts, bots, dashboards. Things that quietly save your team hours every week.</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">◎</div>
+          <div class="svc-title">Collaboration</div>
+          <div class="svc-desc">Got something to build? I like moving ideas forward and connecting the right pieces.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block" id="failures">
+      <div class="sec-label">Museum of failures</div>
+      <div class="museum-intro">Not everything works. Here's what didn't — and what it changed in my thinking. Because honest beats polished.</div>
+      <div class="fail-list">
+
+        <div class="fail-card">
+          <div class="fail-header">
+            <span class="fail-badge">community</span>
+            <div class="fail-title">G:ZKDU — The Hub That Never Launched</div>
+          </div>
+          <div class="fail-rows">
+            <div class="fail-row"><span class="fail-row-label">Tried</span><span class="fail-row-val">A self-development hub where people collaborate on projects</span></div>
+            <div class="fail-row"><span class="fail-row-label">Why it failed</span><span class="fail-row-val">Chased a perfect launch. Built the structure, never shipped the final thing to a real audience.</span></div>
+            <div class="fail-row"><span class="fail-row-label">Learned</span><span class="fail-lesson-val">Seeking a perfect launch permanently prevents a real one. Ship first, refine later.</span></div>
+          </div>
+        </div>
+
+        <div class="fail-card">
+          <div class="fail-header">
+            <span class="fail-badge">e-commerce</span>
+            <div class="fail-title">WMShop & PlayPortal — Exact Same Mistakes</div>
+          </div>
+          <div class="fail-rows">
+            <div class="fail-row"><span class="fail-row-label">Tried</span><span class="fail-row-val">Digital storefronts funded organically via GPU cryptocurrency mining scripts.</span></div>
+            <div class="fail-row"><span class="fail-row-label">Why it failed</span><span class="fail-row-val">Backend worked flawlessly both times. Failed purely on distribution—solved the wrong problem twice.</span></div>
+            <div class="fail-row"><span class="fail-row-label">Learned</span><span class="fail-lesson-val">Rebuilding infrastructure doesn't fix a marketing problem. Building code is the easy part.</span></div>
+          </div>
+        </div>
+
+        <div class="fail-card">
+          <div class="fail-header">
+            <span class="fail-badge">project</span>
+            <div class="fail-title">Roswaldi — An Agency Killed By Calendars</div>
+          </div>
+          <div class="fail-rows">
+            <div class="fail-row"><span class="fail-row-label">Tried</span><span class="fail-row-val">High-end React web agency displaying premium portfolio architectures to local businesses.</span></div>
+            <div class="fail-row"><span class="fail-row-label">Why it failed</span><span class="fail-row-val">Founders' schedules couldn't align. The product quality was extremely high, but was killed by circumstance.</span></div>
+            <div class="fail-row"><span class="fail-row-label">Learned</span><span class="fail-lesson-val">Technical proficiency means nothing without time commitment. Co-founder alignment is absolute.</span></div>
+          </div>
+        </div>
+
+      </div>
+      <a href="airidas-failures.html" style="display:inline-flex; align-items:center; gap:8px; margin-top:20px; font-size:13px; color:var(--dark); background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:10px 20px; text-decoration:none; transition:background 0.15s;" onmouseover="this.style.background='var(--panel2)'" onmouseout="this.style.background='var(--panel)'">See all 7 failures →</a>
+    </div>
+
+    <div class="section-block" id="groups">
+      <div class="sec-label">Where to reach me</div>
+      <div class="groups-wrap">
+        <a class="group-card" href="https://github.com/airidas-rom" target="_blank">
+          <div class="group-name">GitHub</div>
+          <div class="group-meta">See what I'm building</div>
+        </a>
+        <a class="group-card" href="#contact">
+          <div class="group-name">Email</div>
+          <div class="group-meta">Best way to get in touch</div>
+        </a>
+        <a class="group-card" href="https://discord.gg/AqtnshTQhd" target="_blank">
+          <div class="group-name">Discord</div>
+          <div class="group-meta">Come hang out</div>
+        </a>
+        <a class="group-card" href="#">
+          <div class="group-name">WhatsApp</div>
+          <div class="group-meta">For a quicker conversation</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="section-block" id="contact">
+      <div class="sec-label">Get in touch</div>
+      <div class="contact-intro">If you have a repetitive process, a messy workflow, or something that needs building — I can likely help. Or just say hello.</div>
+      <div class="contact-wrap">
+        <input class="ci" type="text" placeholder="Your name" />
+        <input class="ci" type="text" placeholder="Email or contact" />
+        <textarea class="ci" placeholder="Say something..."></textarea>
+        <button class="cta">Send →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span>Airidas · Lithuania</span>
+  <span>built simply · 2026</span>
+</footer>
+
+</body>
+</html>
