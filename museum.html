@@ -22,6 +22,7 @@
   --warm:   #C4956A;
 }
 html { scroll-behavior: smooth; }
+html, body { overflow-x: hidden; width: 100%; position: relative; }
 body { background: var(--cream); font-family: 'DM Sans', sans-serif; color: var(--dark); min-height: 100vh; }
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--panel); }
@@ -100,9 +101,10 @@ footer {
   nav { padding: 12px 18px; height: auto; flex-direction: column; gap: 8px; align-items: center; text-align: center; }
   .page { padding: 32px 20px 80px; }
   .page-title { font-size: 28px; }
-  .fail-header { flex-direction: column; gap: 8px; }
+  .fail-header { flex-direction: column; align-items: flex-start; gap: 8px; }
   .fail-row { flex-direction: column; gap: 4px; margin-bottom: 12px; }
   .fail-row-label { min-width: auto; }
+  footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
 }
 </style>
 </head>

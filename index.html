@@ -23,6 +23,7 @@
   --warm:   #C4956A;
 }
 html { scroll-behavior: smooth; }
+html, body { overflow-x: hidden; width: 100%; position: relative; }
 body { background: var(--cream); font-family: 'DM Sans', sans-serif; color: var(--dark); min-height: 100vh; }
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--panel); }
@@ -145,8 +146,10 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
   .social-item { font-size: 12px; }
   .left-foot { display: none; }
   .right { padding: 32px 20px 60px; }
+  .proj-header { flex-direction: column; align-items: flex-start; gap: 8px; }
   .proj-row { flex-direction: column; gap: 2px; margin-bottom: 8px; }
   .proj-row-label { min-width: auto; }
+  footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
 }
 @media (min-width: 721px) and (max-width: 1050px) {
   .left { width: 255px; padding: 36px 22px; }
