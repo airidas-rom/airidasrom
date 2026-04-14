@@ -32,11 +32,11 @@ nav {
   position: sticky; top: 0; z-index: 100;
   background: var(--panel); border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 36px; height: 56px;
+  padding: 0 36px; min-height: 56px;
 }
 .nav-logo { font-family: 'Lora', serif; font-size: 19px; color: var(--dark); letter-spacing: -0.01em; font-weight: 500;}
-.nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
-.nav-links a { font-size: 13px; color: var(--sub); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+.nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.nav-links a { font-size: 13px; color: var(--sub); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; padding: 4px 0; }
 .nav-links a:hover { color: var(--dark); }
 
 .split { display: flex; align-items: flex-start; }
@@ -135,15 +135,18 @@ textarea.ci { min-height: 96px; resize: vertical; }
 footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); background: var(--panel); }
 
 @media (max-width: 720px) {
-  nav { padding: 0 18px; }
-  .nav-links { gap: 12px; }
+  nav { padding: 12px 18px; height: auto; flex-direction: column; gap: 12px; align-items: center; text-align: center; }
+  .nav-links { gap: 8px 16px; justify-content: center; }
   .nav-links a { font-size: 12px; }
   .split { flex-direction: column; }
-  .left { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); padding: 28px 20px 24px; gap: 18px; overflow: visible; }
+  .left { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); padding: 32px 20px 24px; gap: 18px; overflow: visible; }
   .big-name { font-size: 36px; }
-  .social-stack { flex-direction: row; flex-wrap: wrap; gap: 4px 14px; }
+  .social-stack { flex-direction: row; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 8px; }
+  .social-item { font-size: 12px; }
   .left-foot { display: none; }
-  .right { padding: 28px 20px 60px; }
+  .right { padding: 32px 20px 60px; }
+  .proj-row { flex-direction: column; gap: 2px; margin-bottom: 8px; }
+  .proj-row-label { min-width: auto; }
 }
 @media (min-width: 721px) and (max-width: 1050px) {
   .left { width: 255px; padding: 36px 22px; }

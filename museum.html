@@ -31,7 +31,7 @@ nav {
   position: sticky; top: 0; z-index: 100;
   background: var(--panel); border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 36px; height: 56px;
+  padding: 0 36px; min-height: 56px;
 }
 .nav-logo { font-family: 'Lora', serif; font-size: 19px; color: var(--dark); letter-spacing: -0.01em; text-decoration: none; font-weight: 500;}
 .nav-back { font-size: 13px; color: var(--sub); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; display: flex; align-items: center; gap: 6px; }
@@ -97,10 +97,12 @@ footer {
 }
 
 @media (max-width: 600px) {
-  nav { padding: 0 18px; }
-  .page { padding: 36px 20px 80px; }
+  nav { padding: 12px 18px; height: auto; flex-direction: column; gap: 8px; align-items: center; text-align: center; }
+  .page { padding: 32px 20px 80px; }
   .page-title { font-size: 28px; }
   .fail-header { flex-direction: column; gap: 8px; }
+  .fail-row { flex-direction: column; gap: 4px; margin-bottom: 12px; }
+  .fail-row-label { min-width: auto; }
 }
 </style>
 </head>
