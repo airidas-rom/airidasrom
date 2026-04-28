@@ -59,6 +59,9 @@ nav {
 .social-item { display: flex; align-items: center; gap: 11px; font-size: 13px; color: var(--sub); padding: 6px 0; text-decoration: none; transition: color 0.15s; }
 .social-item:hover { color: var(--dark); }
 .s-icon { width: 24px; height: 24px; border-radius: 6px; background: var(--card); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; color: var(--text); flex-shrink: 0; }
+.headshot { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 2px solid var(--border); }
+.group-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.group-header svg { width: 16px; height: 16px; fill: var(--dark); }
 .into-block { background: var(--cream); border: 1px solid var(--border); border-radius: 14px; padding: 16px 16px 14px; }
 .into-heading { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
 .into-row { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 11px; }
@@ -181,27 +184,27 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
       <div class="big-name">Airidas.</div>
       <div class="handle">@airidas-rom</div>
     </div>
-    <div class="tagline">I turn repetitive processes into systems — automation, scripting, and CAD. Based in Vilnius, available remotely.</div>
+    <div class="tagline">I build custom automation systems and data pipelines for manufacturing and engineering teams.</div>
     <div class="social-stack">
-      <a class="social-item" href="https://github.com/airidas-rom" target="_blank"><span class="s-icon">Gh</span> GitHub</a>
-      <a class="social-item" href="https://discord.gg/AqtnshTQhd" target="_blank"><span class="s-icon">Dc</span> Discord</a>
-      <a class="social-item" href="https://wa.me/37067659523"><span class="s-icon">Wa</span> WhatsApp</a>
-      <a class="social-item" href="mailto:romanovasairidas@gmail.com"><span class="s-icon">@</span> Email</a>
+      <a class="social-item" href="https://github.com/airidas-rom" target="_blank"><span class="s-icon"><svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:var(--text);"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path></svg></span> GitHub</a>
+      <a class="social-item" href="https://discord.gg/AqtnshTQhd" target="_blank"><span class="s-icon"><svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:var(--text);"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515a.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"></path></svg></span> Discord</a>
+      <a class="social-item" href="https://wa.me/37067659523"><span class="s-icon"><svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:var(--text);"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg></span> WhatsApp</a>
+      <a class="social-item" href="mailto:romanovasairidas@gmail.com"><span class="s-icon"><svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:var(--text);"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg></span> Email</a>
     </div>
     <div class="into-block">
       <div class="into-heading">Currently</div>
       <div class="into-row">
-        <div class="into-icon">⚔️</div>
+        <div class="into-icon">◎</div>
         <div>
           <div class="into-cat">status</div>
-          <div class="into-val">Fulfilling 9 months mandatory National Military Service. Resuming operations Q1 2027.</div>
+          <div class="into-val">Available for B2B consulting & automation projects.</div>
         </div>
       </div>
       <div class="into-row">
         <div class="into-icon">◎</div>
         <div>
           <div class="into-cat">open to</div>
-          <div class="into-val">AutoCAD tutoring · automation projects · freelance work</div>
+          <div class="into-val">automation projects · system integrations · consulting</div>
         </div>
       </div>
     </div>
@@ -214,8 +217,8 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
       <div class="sec-label">About</div>
       <div class="hero-line">I automate workflows and turn repetitive work into systems that save time.</div>
       <div class="about-body">
-        Hey, I'm Airidas — based in Vilnius, Lithuania. I write <strong>Python</strong> and <strong>JavaScript</strong>, design in <strong>AutoCAD</strong>, run servers and databases, and build systems that save people time.<br><br>
-        I'm available for freelance work: workflow automation, AutoCAD tutoring (1-on-1 or structured courses), and custom tools for teams. If something in your workflow is repetitive or broken, that's exactly the kind of problem I like solving.
+        Hey, I'm Airidas — based in Vilnius, Lithuania. I build <strong>custom software tools</strong>, internal <strong>AI tools</strong>, and <strong>data integrations</strong>. I partner with businesses to replace repetitive, manual work with reliable automated systems.<br><br>
+        I specialize in bridging the gap between <strong>engineering</strong> and <strong>software</strong>. By automating processes such as <strong>Bill of Materials (BOM)</strong> generation and eliminating manual data entry, I help technical teams reduce project lead times and errors.
       </div>
     </div>
 
@@ -236,17 +239,7 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
           </div>
         </a>
 
-        <a class="proj-card" href="https://github.com/airidas-rom/roswaldi-official" target="_blank">
-          <div class="proj-header">
-            <div class="proj-title">Roswaldi — React web agency</div>
-            <span class="proj-tag">React · TypeScript · Tailwind</span>
-          </div>
-          <div class="proj-rows">
-            <div class="proj-row"><span class="proj-row-label">Problem</span><span class="proj-row-val">Local businesses need high-quality web presences but the market is full of templated, generic agency work</span></div>
-            <div class="proj-row"><span class="proj-row-label">Built</span><span class="proj-row-val">Full agency framework with multilingual support via React context, Framer Motion routing, and premium client demo sites under the Roswaldi brand</span></div>
-            <div class="proj-row"><span class="proj-row-label">Impact</span><span class="proj-row-val proj-impact">Production-ready product — killed by scheduling, not by quality</span></div>
-          </div>
-        </a>
+
 
         <a class="proj-card" href="https://github.com/airidas-rom/stock-sorting" target="_blank">
           <div class="proj-header">
@@ -344,23 +337,23 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
       <div class="services-grid">
         <div class="svc-card">
           <div class="svc-icon">⌨</div>
-          <div class="svc-title">Workflow automation</div>
-          <div class="svc-desc">If you do it manually more than twice, it can probably be automated. Python, JS, Node.</div>
+          <div class="svc-title">Engineering Automation</div>
+          <div class="svc-desc">Automating technical drawing generation, data extraction, and repetitive design tasks.</div>
         </div>
         <div class="svc-card">
-          <div class="svc-icon">◫</div>
-          <div class="svc-title">AutoCAD tutoring</div>
-          <div class="svc-desc">1-on-1 lessons from zero to professional output — 2D drafting, 3D modelling, paper space. In Vilnius or remote. <strong>Get in touch to book.</strong></div>
+          <div class="svc-icon">📐</div>
+          <div class="svc-title">CAD Macros & Scripts</div>
+          <div class="svc-desc">Custom AutoLISP and VBA scripts to automate drafting processes directly inside your CAD software.</div>
         </div>
         <div class="svc-card">
           <div class="svc-icon">⇄</div>
-          <div class="svc-title">Small tools for teams</div>
-          <div class="svc-desc">Internal scripts, bots, dashboards. Things that quietly save your team hours every week.</div>
+          <div class="svc-title">Custom Data Pipelines</div>
+          <div class="svc-desc">Connecting your ERP, inventory systems, and design software to ensure data flows without manual entry.</div>
         </div>
         <div class="svc-card">
           <div class="svc-icon">◎</div>
-          <div class="svc-title">Business systems setup</div>
-          <div class="svc-desc">Help small businesses stop leaking time and money through manual work — booking bots, auto-replies, data tools.</div>
+          <div class="svc-title">AI-Powered Workflows</div>
+          <div class="svc-desc">Implementing AI tools to automate quoting, document generation, and internal communications.</div>
         </div>
       </div>
     </div>
@@ -414,19 +407,31 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
       <div class="sec-label">Where to reach me</div>
       <div class="groups-wrap">
         <a class="group-card" href="https://github.com/airidas-rom" target="_blank">
-          <div class="group-name">GitHub</div>
+          <div class="group-header">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path></svg>
+            <div class="group-name">GitHub</div>
+          </div>
           <div class="group-meta">See what I'm building</div>
         </a>
         <a class="group-card" href="mailto:romanovasairidas@gmail.com">
-          <div class="group-name">Email</div>
+          <div class="group-header">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+            <div class="group-name">Email</div>
+          </div>
           <div class="group-meta">Best way to get in touch</div>
         </a>
         <a class="group-card" href="https://discord.gg/AqtnshTQhd" target="_blank">
-          <div class="group-name">Discord</div>
+          <div class="group-header">
+            <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515a.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"></path></svg>
+            <div class="group-name">Discord</div>
+          </div>
           <div class="group-meta">Come hang out</div>
         </a>
-        <a class="group-card" href="https://wa.me/3706765952">
-          <div class="group-name">WhatsApp</div>
+        <a class="group-card" href="https://wa.me/37067659523">
+          <div class="group-header">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+            <div class="group-name">WhatsApp</div>
+          </div>
           <div class="group-meta">For a quicker conversation</div>
         </a>
       </div>
@@ -434,7 +439,7 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
 
     <div class="section-block" id="contact">
       <div class="sec-label">Get in touch</div>
-      <div class="contact-intro">Looking for AutoCAD lessons, workflow automation, or a custom tool? Send a message and I'll get back to you within a day. Based in Vilnius — also available remotely.</div>
+      <div class="contact-intro">Let's discuss your workflow. Tell me what processes are slowing your team down, and I'll get back to you with a technical assessment within 24 hours. Based in Vilnius — available globally.</div>
       <div class="contact-wrap">
         <input id="ci-name" class="ci" type="text" placeholder="Your name" />
         <input id="ci-contact" class="ci" type="text" placeholder="Your email or contact" />
