@@ -150,6 +150,7 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
 
 @media (max-width: 720px) {
   nav { padding: 12px 18px; height: auto; flex-direction: column; gap: 12px; align-items: center; text-align: center; }
+  html { scroll-padding-top: 110px; } /* mobile nav stacks to ~100px */
   .nav-links { gap: 8px 16px; justify-content: center; }
   .nav-links a { font-size: 12px; }
   .split { flex-direction: column; }
@@ -590,12 +591,14 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
     frame.src = 'https://docs.google.com/viewer?url=' + encodeURIComponent(absoluteUrl) + '&embedded=true';
     titleEl.textContent = title;
     modal.classList.add('open');
+    document.body.style.overflow = 'hidden'; // lock background scroll
   }
 
   function closePdf(e) {
     const modal = document.getElementById('pdfModal');
     const frame = document.getElementById('pdfFrame');
     modal.classList.remove('open');
+    document.body.style.overflow = ''; // restore scroll
     setTimeout(() => { frame.src = ''; }, 300);
   }
 </script>
