@@ -152,6 +152,22 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
   .proj-row { flex-direction: column; gap: 2px; margin-bottom: 8px; }
   .proj-row-label { min-width: auto; }
   footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
+
+  /* Ghost video: break out of card padding and pop on mobile */
+  .ghost-video-wrap {
+    margin: 16px -22px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease, filter 0.6s ease;
+  }
+  #ghostVideo {
+    transform: scale(0.92);
+  }
+  #ghostVideo.popped {
+    transform: scale(1);
+  }
 }
 @media (min-width: 721px) and (max-width: 1050px) {
   .left { width: 255px; padding: 36px 22px; }
@@ -232,7 +248,7 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
             <div class="proj-title">Ghost Outbound Engine</div>
             <span class="proj-tag">Python · Gemini AI · Automation Dashboard</span>
           </div>
-          <div style="margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border);">
+          <div class="ghost-video-wrap" style="margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border);">
             <video id="ghostVideo" loop muted playsInline style="width: 100%; display: block; opacity: 0.3; filter: grayscale(100%); transition: all 0.6s ease;">
               <source src="images/ghost_engine.mp4" type="video/mp4">
             </video>
@@ -498,14 +514,16 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
           if(entry.isIntersecting) {
             video.style.opacity = "1";
             video.style.filter = "grayscale(0%)";
+            video.classList.add("popped");
             video.play();
           } else {
             video.style.opacity = "0.3";
             video.style.filter = "grayscale(100%)";
+            video.classList.remove("popped");
             video.pause();
           }
         });
-      }, { threshold: 0.6 }); 
+      }, { threshold: 0.3 }); 
       observer.observe(video);
     }
   });
