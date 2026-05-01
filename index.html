@@ -22,7 +22,7 @@
   --green:  #7A9E6E;
   --warm:   #C4956A;
 }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 56px; }
 body { background: var(--cream); font-family: 'DM Sans', sans-serif; color: var(--dark); min-height: 100vh; }
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--panel); }
@@ -72,7 +72,7 @@ nav {
 .left-foot { font-size: 11px; color: var(--muted); letter-spacing: 0.04em; margin-top: auto; }
 
 .right { flex: 1; min-width: 0; padding: 52px 52px 100px; }
-.section-block { margin-bottom: 64px; }
+.section-block { margin-bottom: 64px; scroll-margin-top: 24px; }
 .sec-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
 .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 100px; }
 
@@ -139,14 +139,14 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
 .video-fullscreen-btn { display: none; }
 
 /* PDF Viewer Modal */
-.pdf-modal { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(20, 15, 10, 0.95); z-index: 2000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; padding: 20px; backdrop-filter: blur(4px); }
+.pdf-modal { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(20, 15, 10, 0.92); z-index: 2000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; padding: 16px; backdrop-filter: blur(4px); }
 .pdf-modal.open { display: flex; opacity: 1; }
-.pdf-modal-content { position: relative; width: 100%; max-width: 900px; height: 85vh; border-radius: 8px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); background: var(--panel); display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); }
-.pdf-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--panel); border-bottom: 1px solid var(--border); }
-.pdf-title { font-size: 14px; font-weight: 500; color: var(--dark); font-family: 'DM Sans', sans-serif; }
-.close-pdf { font-size: 13px; color: var(--muted); cursor: pointer; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); white-space: nowrap; transition: background 0.15s, color 0.15s; }
+.pdf-modal-content { position: relative; width: 100%; max-width: 900px; height: min(82vh, 700px); border-radius: 10px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); background: var(--panel); display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); }
+.pdf-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--border); flex-shrink: 0; gap: 12px; }
+.pdf-title { font-size: 13px; font-weight: 500; color: var(--dark); font-family: 'DM Sans', sans-serif; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.close-pdf { font-size: 12px; color: var(--muted); cursor: pointer; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); white-space: nowrap; flex-shrink: 0; transition: background 0.15s, color 0.15s; }
 .close-pdf:hover { background: var(--card); color: var(--dark); }
-.pdf-frame { flex: 1; width: 100%; border: none; background: #fff; }
+.pdf-frame { flex: 1; width: 100%; border: none; background: #fff; min-height: 0; }
 
 @media (max-width: 720px) {
   nav { padding: 12px 18px; height: auto; flex-direction: column; gap: 12px; align-items: center; text-align: center; }
@@ -205,13 +205,13 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
 <nav>
   <span class="nav-logo">Airidas.</span>
   <div class="nav-links">
-    <a href="#about">about</a>
-    <a href="#projects">projects</a>
-    <a href="#skills">skills</a>
-    <a href="#services">services</a>
-    <a href="#failures">failures</a>
-    <a href="#groups">reach me</a>
-    <a href="#contact">contact</a>
+    <a href="#about" class="nav-anchor">about</a>
+    <a href="#projects" class="nav-anchor">projects</a>
+    <a href="#skills" class="nav-anchor">skills</a>
+    <a href="#services" class="nav-anchor">services</a>
+    <a href="#failures" class="nav-anchor">failures</a>
+    <a href="#groups" class="nav-anchor">reach me</a>
+    <a href="#contact" class="nav-anchor">contact</a>
   </div>
 </nav>
 
@@ -563,6 +563,27 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
       }, { threshold: 0.3 });
       observer.observe(video);
     }
+    // Nav scroll with offset — accounts for sticky navbar
+    document.querySelectorAll('a.nav-anchor').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        if(!target) return;
+        e.preventDefault();
+        // On mobile the whole page scrolls; on desktop the .right panel scrolls
+        const rightPanel = document.querySelector('.right');
+        const NAV_OFFSET = 24; // px gap below the nav
+        if(rightPanel && rightPanel.contains(target)) {
+          const panelTop = rightPanel.getBoundingClientRect().top;
+          const targetTop = target.getBoundingClientRect().top;
+          rightPanel.scrollBy({ top: targetTop - panelTop - NAV_OFFSET, behavior: 'smooth' });
+        } else {
+          const navH = document.querySelector('nav').offsetHeight;
+          const absoluteTop = target.getBoundingClientRect().top + window.scrollY - navH - NAV_OFFSET;
+          window.scrollTo({ top: absoluteTop, behavior: 'smooth' });
+        }
+      });
+    });
   });
 </script>
 
