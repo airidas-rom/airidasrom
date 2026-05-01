@@ -153,20 +153,26 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
   .proj-row-label { min-width: auto; }
   footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
 
-  /* Ghost video: break out of card padding and pop on mobile */
+  /* Ghost video: break out of card and pop on mobile */
+  .proj-card { overflow: visible; }
   .ghost-video-wrap {
     margin: 16px -22px;
     border-radius: 0;
     border-left: none;
     border-right: none;
     overflow: hidden;
-    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease, filter 0.6s ease;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.65s cubic-bezier(0.34, 1.4, 0.64, 1), box-shadow 0.65s ease;
+  }
+  .ghost-video-wrap.popped {
+    transform: scale(1.72);
+    z-index: 100;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+    border-radius: 6px;
   }
   #ghostVideo {
-    transform: scale(0.92);
-  }
-  #ghostVideo.popped {
-    transform: scale(1);
+    transition: opacity 0.6s ease, filter 0.6s ease;
   }
 }
 @media (min-width: 721px) and (max-width: 1050px) {
@@ -508,18 +514,22 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const video = document.getElementById("ghostVideo");
-    if(video) {
+    const wrap = video ? video.closest(".ghost-video-wrap") : null;
+    if(video && wrap) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if(entry.isIntersecting) {
             video.style.opacity = "1";
             video.style.filter = "grayscale(0%)";
-            video.classList.add("popped");
+            // Only pop out on mobile
+            if(window.innerWidth <= 720) {
+              wrap.classList.add("popped");
+            }
             video.play();
           } else {
             video.style.opacity = "0.3";
             video.style.filter = "grayscale(100%)";
-            video.classList.remove("popped");
+            wrap.classList.remove("popped");
             video.pause();
           }
         });
