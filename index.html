@@ -138,6 +138,16 @@ textarea.ci { min-height: 96px; resize: vertical; }
 footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); background: var(--panel); }
 .video-fullscreen-btn { display: none; }
 
+/* PDF Viewer Modal */
+.pdf-modal { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(20, 15, 10, 0.95); z-index: 2000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; padding: 20px; backdrop-filter: blur(4px); }
+.pdf-modal.open { display: flex; opacity: 1; }
+.pdf-modal-content { position: relative; width: 100%; max-width: 900px; height: 85vh; border-radius: 8px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); background: var(--panel); display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); }
+.pdf-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--panel); border-bottom: 1px solid var(--border); }
+.pdf-title { font-size: 14px; font-weight: 500; color: var(--dark); font-family: 'DM Sans', sans-serif; }
+.close-pdf { font-size: 13px; color: var(--muted); cursor: pointer; padding: 6px 12px; border-radius: 6px; transition: background 0.15s, color 0.15s; }
+.close-pdf:hover { background: var(--card); color: var(--dark); }
+.pdf-frame { flex: 1; width: 100%; border: none; background: #fff; }
+
 @media (max-width: 720px) {
   nav { padding: 12px 18px; height: auto; flex-direction: column; gap: 12px; align-items: center; text-align: center; }
   .nav-links { gap: 8px 16px; justify-content: center; }
@@ -310,36 +320,36 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
       <div class="hero-line">Level IV Certified. From conceptual sketches to manufacturing-ready 3D models and assemblies.</div>
       <div class="proj-list">
         
-        <a class="proj-card" href="images/Drawing1-Layout1.pdf" target="_blank">
+        <a class="proj-card" href="#" onclick="openPdf(event, 'images/Drawing1-Layout1.pdf', 'Mechanical Part Projection (Layout 1)')">
           <div class="proj-header">
             <div class="proj-title">Mechanical Part Projection (Layout 1)</div>
             <span class="proj-tag">AutoCAD · Mechanical</span>
           </div>
           <div class="proj-rows">
             <div class="proj-row"><span class="proj-row-label">Format</span><span class="proj-row-val">PDF Blueprint / Technical Drawing</span></div>
-            <div class="proj-row"><span class="proj-row-label">Click</span><span class="proj-row-val proj-impact">Click to view the full PDF blueprint →</span></div>
+            <div class="proj-row"><span class="proj-row-label">Click</span><span class="proj-row-val proj-impact">Click to view the PDF blueprint natively →</span></div>
           </div>
         </a>
 
-        <a class="proj-card" href="images/Pipe.pdf" target="_blank">
+        <a class="proj-card" href="#" onclick="openPdf(event, 'images/Pipe.pdf', 'Flanged Elbow Pipe')">
           <div class="proj-header">
             <div class="proj-title">Flanged Elbow Pipe</div>
             <span class="proj-tag">SolidWorks · Mechanical Part</span>
           </div>
           <div class="proj-rows">
             <div class="proj-row"><span class="proj-row-label">Format</span><span class="proj-row-val">PDF Blueprint / Technical Drawing</span></div>
-            <div class="proj-row"><span class="proj-row-label">Click</span><span class="proj-row-val proj-impact">Click to view the full PDF model →</span></div>
+            <div class="proj-row"><span class="proj-row-label">Click</span><span class="proj-row-val proj-impact">Click to view the PDF blueprint natively →</span></div>
           </div>
         </a>
 
-        <a class="proj-card" href="images/PART3.pdf" target="_blank">
+        <a class="proj-card" href="#" onclick="openPdf(event, 'images/PART3.pdf', 'Sheet Metal Component')">
           <div class="proj-header">
             <div class="proj-title">Sheet Metal Component</div>
             <span class="proj-tag">SolidWorks · Sheet Metal</span>
           </div>
           <div class="proj-rows">
             <div class="proj-row"><span class="proj-row-label">Format</span><span class="proj-row-val">PDF Blueprint / Technical Drawing</span></div>
-            <div class="proj-row"><span class="proj-row-label">Click</span><span class="proj-row-val proj-impact">Click to view the full PDF model →</span></div>
+            <div class="proj-row"><span class="proj-row-label">Click</span><span class="proj-row-val proj-impact">Click to view the PDF blueprint natively →</span></div>
           </div>
         </a>
 
@@ -554,6 +564,37 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
       observer.observe(video);
     }
   });
+</script>
+
+<div class="pdf-modal" id="pdfModal" onclick="closePdf(event)">
+  <div class="pdf-modal-content" onclick="event.stopPropagation()">
+    <div class="pdf-header">
+      <div class="pdf-title" id="pdfTitle">Document Viewer</div>
+      <div class="close-pdf" onclick="closePdf(event)">Close ✕</div>
+    </div>
+    <iframe class="pdf-frame" id="pdfFrame" src=""></iframe>
+  </div>
+</div>
+
+<script>
+  // PDF Viewer Logic
+  function openPdf(e, url, title) {
+    e.preventDefault();
+    const modal = document.getElementById('pdfModal');
+    const frame = document.getElementById('pdfFrame');
+    const titleEl = document.getElementById('pdfTitle');
+    
+    frame.src = url;
+    titleEl.textContent = title;
+    modal.classList.add('open');
+  }
+
+  function closePdf(e) {
+    const modal = document.getElementById('pdfModal');
+    const frame = document.getElementById('pdfFrame');
+    modal.classList.remove('open');
+    setTimeout(() => { frame.src = ''; }, 300); // Clear after fade out
+  }
 </script>
 
 </body>
