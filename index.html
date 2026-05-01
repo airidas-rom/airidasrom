@@ -232,6 +232,11 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
             <div class="proj-title">Ghost Outbound Engine</div>
             <span class="proj-tag">Python · Gemini AI · Automation Dashboard</span>
           </div>
+          <div style="margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border);">
+            <video id="ghostVideo" loop muted playsInline style="width: 100%; display: block; opacity: 0.3; filter: grayscale(100%); transition: all 0.6s ease;">
+              <source src="images/ghost_engine.mp4" type="video/mp4">
+            </video>
+          </div>
           <div class="proj-rows">
             <div class="proj-row"><span class="proj-row-label">Problem</span><span class="proj-row-val">B2B outreach is highly manual, requiring hours of researching targets and writing personalized emails</span></div>
             <div class="proj-row"><span class="proj-row-label">Built</span><span class="proj-row-val">Autonomous pipeline that scrapes target websites, structures the data, and uses Gemini AI to generate hyper-personalized sales pitches</span></div>
@@ -308,6 +313,7 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
 
       </div>
     </div>
+
 
     <div class="section-block" id="skills">
       <div class="sec-label">Skills & tools</div>
@@ -482,6 +488,28 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
   <span>Airidas · Lithuania</span>
   <span>built simply · 2026</span>
 </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const video = document.getElementById("ghostVideo");
+    if(video) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            video.style.opacity = "1";
+            video.style.filter = "grayscale(0%)";
+            video.play();
+          } else {
+            video.style.opacity = "0.3";
+            video.style.filter = "grayscale(100%)";
+            video.pause();
+          }
+        });
+      }, { threshold: 0.6 }); 
+      observer.observe(video);
+    }
+  });
+</script>
 
 </body>
 </html>
