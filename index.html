@@ -153,30 +153,33 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
   .proj-row-label { min-width: auto; }
   footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
 
-  /* Ghost video: smooth full-width expansion on mobile */
-  .proj-card { overflow: visible; }
+  /* Ghost video fullscreen button on mobile */
   .ghost-video-wrap {
     position: relative;
-    left: 0;
-    width: 100%;
     margin: 16px 0;
+    border-radius: 8px;
     overflow: hidden;
+  }
+  .video-fullscreen-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    background: rgba(0,0,0,0.55);
+    border: none;
     border-radius: 6px;
-    transition: width 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
-                left 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
-                border-radius 0.8s ease,
-                box-shadow 0.8s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s ease;
   }
-  .ghost-video-wrap.popped {
-    /* Expand to full screen width. Left offset = card padding (22px) + right section padding (20px) = 42px */
-    width: 100vw;
-    left: -42px;
-    border-radius: 0;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
-  }
-  #ghostVideo {
-    transition: opacity 0.6s ease, filter 0.6s ease;
-  }
+  .video-fullscreen-btn:hover { background: rgba(0,0,0,0.8); }
+  .video-fullscreen-btn svg { width: 16px; height: 16px; fill: #fff; }
+  #ghostVideo { transition: opacity 0.6s ease, filter 0.6s ease; }
 }
 @media (min-width: 721px) and (max-width: 1050px) {
   .left { width: 255px; padding: 36px 22px; }
@@ -257,10 +260,13 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
             <div class="proj-title">Ghost Outbound Engine</div>
             <span class="proj-tag">Python · Gemini AI · Automation Dashboard</span>
           </div>
-          <div class="ghost-video-wrap" style="margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border);">
-            <video id="ghostVideo" loop muted playsInline style="width: 100%; display: block; opacity: 0.3; filter: grayscale(100%); transition: all 0.6s ease;">
+          <div class="ghost-video-wrap" style="border: 1px solid var(--border);">
+            <video id="ghostVideo" loop muted playsInline style="width: 100%; display: block; opacity: 0.3; filter: grayscale(100%); transition: opacity 0.6s ease, filter 0.6s ease;">
               <source src="images/ghost_engine.mp4" type="video/mp4">
             </video>
+            <button class="video-fullscreen-btn" id="fsBtn" title="Watch fullscreen">
+              <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+            </button>
           </div>
           <div class="proj-rows">
             <div class="proj-row"><span class="proj-row-label">Problem</span><span class="proj-row-val">B2B outreach is highly manual, requiring hours of researching targets and writing personalized emails</span></div>
@@ -518,25 +524,32 @@ footer { border-top: 1px solid var(--border); padding: 20px 36px; display: flex;
   document.addEventListener("DOMContentLoaded", function() {
     const video = document.getElementById("ghostVideo");
     const wrap = video ? video.closest(".ghost-video-wrap") : null;
-    if(video && wrap) {
+    const fsBtn = document.getElementById("fsBtn");
+
+    // Fullscreen button
+    if(fsBtn && video) {
+      fsBtn.addEventListener("click", function() {
+        if(video.requestFullscreen) video.requestFullscreen();
+        else if(video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+        else if(video.webkitEnterFullscreen) video.webkitEnterFullscreen(); // iOS Safari
+      });
+    }
+
+    // Scroll-triggered play
+    if(video) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if(entry.isIntersecting) {
             video.style.opacity = "1";
             video.style.filter = "grayscale(0%)";
-            // Only pop out on mobile
-            if(window.innerWidth <= 720) {
-              wrap.classList.add("popped");
-            }
             video.play();
           } else {
             video.style.opacity = "0.3";
             video.style.filter = "grayscale(100%)";
-            wrap.classList.remove("popped");
             video.pause();
           }
         });
-      }, { threshold: 0.3 }); 
+      }, { threshold: 0.3 });
       observer.observe(video);
     }
   });
